@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 
+
 class Women(models.Model):
     title = models.CharField(max_length=255, verbose_name="Заголовок")
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
@@ -18,14 +19,16 @@ class Women(models.Model):
         return reverse('post', kwargs={'post_slug': self.slug})
 
     class Meta:
-        verbose_name = 'Известные женщины'
-        verbose_name_plural = 'Известные женщины'
+        verbose_name = 'Известные мужчины'
+        verbose_name_plural = 'Известные мужчины'
         ordering = ['id']
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=100, db_index=True, verbose_name="Категория")
-    slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
+    name = models.CharField(
+        max_length=100, db_index=True, verbose_name="Категория")
+    slug = models.SlugField(
+        max_length=255, unique=True, db_index=True, verbose_name="URL")
 
     def __str__(self):
         return self.name
